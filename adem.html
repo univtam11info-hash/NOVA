@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>معرض النشاطات والحلول - Nova AI</title>
+    <link rel="stylesheet" href="nova.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            background-color: #f4f4f6;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .gallery-header {
+            background-color: #2b082e;
+            padding: 35px 0;
+            text-align: center;
+            border-bottom: 4px solid #4a0e4e;
+        }
+
+        .animated-logo {
+            max-height: 100px;
+            width: auto;
+            object-fit: contain;
+            animation: pulseLogo 2s infinite ease-in-out;
+            margin-bottom: 15px;
+            background-color: #2b082e;
+            mix-blend-mode: screen;
+            padding: 5px;
+            border-radius: 8px;
+            display: inline-block;
+        }
+
+        @keyframes pulseLogo {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        .gallery-title {
+            color: #fff;
+            font-size: 26px;
+            font-weight: bold;
+        }
+
+        .back-home {
+            display: inline-block;
+            margin: 25px auto 10px;
+            color: #4a0e4e;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        .back-home:hover {
+            text-decoration: underline;
+        }
+
+        .gallery-container {
+            width: 90%;
+            max-width: 900px;
+            margin: 20px auto 50px auto;
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+        }
+
+        .activity-card {
+            background: #fff;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            border: 1px solid #e2e2e2;
+        }
+
+        .media-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 10px;
+            background: #111;
+            padding: 10px;
+        }
+
+        .media-item {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            border-radius: 6px;
+            background: #000;
+        }
+
+        .activity-content {
+            padding: 30px;
+        }
+
+        .activity-title {
+            font-size: 22px;
+            color: #2b082e;
+            margin-bottom: 12px;
+            font-weight: bold;
+        }
+
+        .activity-date {
+            font-size: 12px;
+            color: #888;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .activity-text {
+            font-size: 15px;
+            color: #444;
+            line-height: 1.7;
+            white-space: pre-wrap;
+        }
+
+        .loading-notice, .empty-notice {
+            text-align: center;
+            padding: 40px;
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            color: #666;
+            font-size: 16px;
+        }
+        /* ===== LIGHTBOX ===== */
+        #nova-lightbox {
+            position: fixed;
+            inset: 0;
+            z-index: 9999;
+            background: rgba(0,0,0,.92);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            animation: lbFadeIn .2s ease;
+        }
+        @keyframes lbFadeIn { from { opacity:0 } to { opacity:1 } }
+        #lb-content-wrap {
+            position: relative;
+            max-width: 92vw;
+            max-height: 85vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        #lb-media-slot img,
+        #lb-media-slot video {
+            max-width: 90vw;
+            max-height: 80vh;
+            border-radius: 8px;
+            object-fit: contain;
+            display: block;
+            box-shadow: 0 8px 40px rgba(0,0,0,.6);
+            background: #000;
+        }
+        #lb-media-slot iframe {
+            width: min(90vw, 900px);
+            height: min(70vh, 500px);
+            border: none;
+            border-radius: 8px;
+        }
+        #lb-counter {
+            color: #ccc;
+            font-size: 13px;
+            margin-top: 10px;
+            direction: ltr;
+        }
+        #lb-close {
+            position: fixed;
+            top: 18px;
+            left: 18px;
+            background: rgba(255,255,255,.15);
+            color: #fff;
+            border: none;
+            border-radius: 50%;
+            width: 42px;
+            height: 42px;
+            font-size: 20px;
+            cursor: pointer;
+            z-index: 10001;
+            transition: background .2s;
+        }
+        #lb-close:hover { background: rgba(255,255,255,.35); }
+        #lb-prev, #lb-next {
+            position: fixed;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255,255,255,.15);
+            color: #fff;
+            border: none;
+            border-radius: 50%;
+            width: 48px;
+            height: 48px;
+            font-size: 22px;
+            cursor: pointer;
+            z-index: 10001;
+            transition: background .2s;
+        }
+        #lb-prev:hover, #lb-next:hover { background: rgba(255,255,255,.35); }
+        #lb-prev { right: 12px; }
+        #lb-next { left: 12px; }
+        .media-item { cursor: zoom-in; }
+    </style>
+</head>
+<body>
+    <!-- ===== LIGHTBOX OVERLAY ===== -->
+    <div id="nova-lightbox" role="dialog" aria-modal="true" aria-label="عارض الوسائط" style="display:none;">
+        <button id="lb-close" title="إغلاق (Esc)">&#10005;</button>
+        <button id="lb-prev" title="السابق">&#10094;</button>
+        <button id="lb-next" title="التالي">&#10095;</button>
+        <div id="lb-content-wrap">
+            <div id="lb-media-slot"></div>
+            <div id="lb-counter"></div>
+        </div>
+    </div>
+
+    <header class="gallery-header">
+        <div class="container" style="text-align: center;">
+            <img src="logo1.png" alt="Nova AI Logo" class="animated-logo">
+            <h1 class="gallery-title">معرض نشاطات وفعاليات دار الذكاء الاصطناعي</h1>
+        </div>
+    </header>
+
+    <div class="container" style="max-width: 900px;">
+        <a href="nova.html" class="back-home"><i class="fas fa-arrow-right"></i> العودة إلى الصفحة الرئيسية</a>
+    </div>
+
+    <main class="gallery-container" id="dynamic-activities">
+        <div class="loading-notice">
+            <i class="fas fa-spinner fa-spin" style="font-size: 30px; color: #4a0e4e; margin-bottom: 10px;"></i>
+            <p>جاري تحميل النشاطات من قاعدة البيانات...</p>
+        </div>
+    </main>
+
+    <footer style="background-color: #220525; color: #fff; text-align: center; padding: 20px 0; margin-top: 50px; font-size: 13px;">
+        <p>&copy; 2026 Nova AI - جامعة تمنراست. جميع الحقوق محفوظة.</p>
+    </footer>
+
+    <script type="module">
+        import { collection, getDocs, query, where } from "https://www.gstatic.com/firebasejs/13.1.0/firebase-firestore.js";
+        import { db } from "./firebase.js";
+
+        async function loadActivities() {
+            const container = document.getElementById('dynamic-activities');
+
+            try {
+                const q = query(collection(db, "activities"), where("published", "==", true));
+                const querySnapshot = await getDocs(q);
+
+                if (querySnapshot.empty) {
+                    container.innerHTML = `
+                        <div class="empty-notice">
+                            <i class="fas fa-folder-open" style="font-size: 40px; color: #4a0e4e; margin-bottom: 15px;"></i>
+                            <p>لا توجد نشاطات منشورة حالياً في المعرض.</p>
+                        </div>
+                    `;
+                    return;
+                }
+
+                const activities = querySnapshot.docs.map((activityDoc) => activityDoc.data());
+                activities.sort((first, second) => {
+                    const firstDate = first.createdAt?.toMillis?.() || 0;
+                    const secondDate = second.createdAt?.toMillis?.() || 0;
+                    return secondDate - firstDate;
+                });
+                container.replaceChildren();
+
+                activities.forEach((data) => {
+                    const card = document.createElement('div');
+                    card.className = 'activity-card';
+
+                    const mediaGrid = document.createElement('div');
+                    mediaGrid.className = 'media-grid';
+                    let hasMedia = false;
+
+                    if (Array.isArray(data.media)) {
+                        data.media.forEach((item) => {
+                            if (!item) return;
+                            const url = typeof item === 'string' ? item : item.url;
+                            if (!url || typeof url !== 'string') return;
+
+                            const itemType = (item.type || '').toLowerCase();
+                            const isVideo = itemType === 'video'
+                                || /^data:video\//i.test(url)
+                                || /\.(mp4|webm|mov)(\?.*)?$/i.test(url)
+                                || /youtube\.com|youtu\.be/i.test(url);
+
+                            let mediaEl;
+
+                            if (isVideo) {
+                                const ytMatch = url.match(/(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/i);
+                                if (ytMatch) {
+                                    mediaEl = document.createElement('iframe');
+                                    mediaEl.src = 'https://www.youtube.com/embed/' + ytMatch[1];
+                                    mediaEl.className = 'media-item';
+                                    mediaEl.setAttribute('allowfullscreen', 'true');
+                                    mediaEl.style.border = 'none';
+                                } else {
+                                    mediaEl = document.createElement('video');
+                                    mediaEl.src = url;
+                                    mediaEl.className = 'media-item';
+                                    mediaEl.controls = true;
+                                    mediaEl.preload = 'metadata';
+                                }
+                            } else {
+                                mediaEl = document.createElement('img');
+                                mediaEl.src = url;
+                                mediaEl.className = 'media-item';
+                                mediaEl.alt = (typeof data.title === 'string' ? data.title : 'صورة من النشاط');
+                                mediaEl.loading = 'lazy';
+                            }
+
+                            if (mediaEl) {
+                                mediaGrid.appendChild(mediaEl);
+                                hasMedia = true;
+                            }
+                        });
+                    }
+
+                    const content = document.createElement('div');
+                    content.className = 'activity-content';
+                    const date = document.createElement('span');
+                    date.className = 'activity-date';
+                    const dateIcon = document.createElement('i');
+                    dateIcon.className = 'far fa-calendar-alt';
+                    date.append(dateIcon, document.createTextNode(' '));
+                    if (data.createdAt && typeof data.createdAt.toDate === 'function') {
+                        date.append(document.createTextNode(data.createdAt.toDate().toLocaleDateString('ar-DZ', {
+                            year: 'numeric',
+                            month: 'long',
+                            day: 'numeric'
+                        })));
+                    }
+
+                    const title = document.createElement('h2');
+                    title.className = 'activity-title';
+                    title.textContent = typeof data.title === 'string' ? data.title : 'نشاط من Nova AI';
+                    const description = document.createElement('p');
+                    description.className = 'activity-text';
+                    description.textContent = typeof data.description === 'string' ? data.description : '';
+
+                    content.append(date, title, description);
+                    
+                    if (hasMedia) {
+                        card.appendChild(mediaGrid);
+                    }
+                    card.appendChild(content);
+            // Wire lightbox to each media item in this card
+            const cardMediaItems = Array.isArray(data.media) ? data.media.map(function(m){
+                const u = typeof m === 'string' ? m : m.url;
+                const t = typeof m === 'string' ? '' : (m.type || '');
+                return { url: u, type: t };
+            }).filter(function(m){ return m.url && typeof m.url === 'string'; }) : [];
+
+            mediaGrid.querySelectorAll('.media-item').forEach(function(el, elIdx) {
+                el.style.cursor = 'zoom-in';
+                el.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    window.novaLightbox.open(cardMediaItems, elIdx);
+                });
+            });
+
+                    container.appendChild(card);
+                });
+
+            } catch (error) {
+                console.error("خطأ في جلب النشاطات: ", error);
+                const errorNotice = document.createElement('div');
+                errorNotice.className = 'empty-notice';
+                errorNotice.style.color = 'red';
+                const message = document.createElement('p');
+                message.textContent = 'حدث خطأ أثناء تحميل النشاطات. تحقق من اتصال قاعدة البيانات وإعدادات Firebase.';
+                errorNotice.appendChild(message);
+                container.replaceChildren(errorNotice);
+            }
+        }
+
+        loadActivities();
+        // ===== LIGHTBOX ENGINE =====
+        (function () {
+            let items = [];   // [{url, type}]
+            let idx   = 0;
+
+            const lb      = document.getElementById('nova-lightbox');
+            const slot    = document.getElementById('lb-media-slot');
+            const counter = document.getElementById('lb-counter');
+            const btnClose = document.getElementById('lb-close');
+            const btnPrev  = document.getElementById('lb-prev');
+            const btnNext  = document.getElementById('lb-next');
+
+            function isVideo(item) {
+                const t = (item.type || '').toLowerCase();
+                const u = item.url || '';
+                return t === 'video'
+                    || /^data:video\//i.test(u)
+                    || /\.(mp4|webm|mov)(\?.*)?$/i.test(u)
+                    || /youtube\.com|youtu\.be/i.test(u);
+            }
+
+            function isYT(url) {
+                return /youtube\.com|youtu\.be/i.test(url);
+            }
+
+            function ytId(url) {
+                const m = url.match(/(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?\/|.*[?&]v=))|youtu\.be\/)([^"&?\/\s]{11})/i);
+                return m ? m[1] : null;
+            }
+
+            function render() {
+                slot.innerHTML = '';
+                const item = items[idx];
+                const url  = item.url;
+                counter.textContent = (idx + 1) + ' / ' + items.length;
+
+                btnPrev.style.display = items.length > 1 ? '' : 'none';
+                btnNext.style.display = items.length > 1 ? '' : 'none';
+
+                if (isVideo(item)) {
+                    const vid = url;
+                    if (isYT(vid)) {
+                        const id  = ytId(vid);
+                        const fr  = document.createElement('iframe');
+                        fr.src    = 'https://www.youtube.com/embed/' + id + '?autoplay=1';
+                        fr.allow  = 'autoplay; fullscreen';
+                        fr.allowFullscreen = true;
+                        slot.appendChild(fr);
+                    } else {
+                        const v   = document.createElement('video');
+                        v.src     = vid;
+                        v.controls = true;
+                        v.autoplay = true;
+                        slot.appendChild(v);
+                    }
+                } else {
+                    const img = document.createElement('img');
+                    img.src   = url;
+                    img.alt   = '';
+                    slot.appendChild(img);
+                }
+            }
+
+            function open(mediaItems, startIdx) {
+                items = mediaItems;
+                idx   = startIdx;
+                render();
+                lb.style.display = 'flex';
+                document.body.style.overflow = 'hidden';
+                lb.focus && lb.focus();
+            }
+
+            function close() {
+                lb.style.display = 'none';
+                slot.innerHTML   = '';
+                document.body.style.overflow = '';
+            }
+
+            function prev() { idx = (idx - 1 + items.length) % items.length; render(); }
+            function next() { idx = (idx + 1) % items.length; render(); }
+
+            btnClose.addEventListener('click', close);
+            btnPrev.addEventListener('click', prev);
+            btnNext.addEventListener('click', next);
+
+            lb.addEventListener('click', function (e) {
+                if (e.target === lb) close();
+            });
+
+            document.addEventListener('keydown', function (e) {
+                if (lb.style.display === 'none') return;
+                if (e.key === 'Escape') close();
+                if (e.key === 'ArrowLeft')  next();
+                if (e.key === 'ArrowRight') prev();
+            });
+
+            // Touch swipe
+            let touchStartX = 0;
+            lb.addEventListener('touchstart', function (e) { touchStartX = e.touches[0].clientX; }, { passive: true });
+            lb.addEventListener('touchend', function (e) {
+                const dx = e.changedTouches[0].clientX - touchStartX;
+                if (Math.abs(dx) > 50) { dx < 0 ? next() : prev(); }
+            }, { passive: true });
+
+            // Expose opener globally so both static + dynamic cards can use it
+            window.novaLightbox = { open };
+        })();
+    </script>
+</body>
+</html>

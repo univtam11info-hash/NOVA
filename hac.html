@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="الهاكاثونات والمسابقات التقنية والابتكارية في دار الذكاء الاصطناعي Nova AI.">
+    <title>الهاكاثونات والمسابقات - Nova AI</title>
+    <link rel="stylesheet" href="nova.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .event-live-card { background: #fff; border-radius: 8px; padding: 22px; margin-bottom: 18px; box-shadow: 0 4px 14px rgba(0,0,0,.06); border-top: 4px solid #4a0e4e; }
+        .event-live-card h3 { color: #2b082e; font-size: 19px; margin: 0 0 10px 0; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px; }
+        .event-badges { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 12px; }
+        .badge { display: inline-flex; align-items: center; gap: 5px; padding: 4px 10px; border-radius: 14px; font-size: 12px; font-weight: bold; }
+        .badge-open { background: #dcfce7; color: #15803d; }
+        .badge-soon { background: #fef3c7; color: #b45309; }
+        .badge-closed { background: #fee2e2; color: #b91c1c; }
+        .badge-meta { background: #f3e8f5; color: #4a0e4e; }
+        .event-desc { color: #555; font-size: 14px; line-height: 1.8; margin-bottom: 15px; white-space: pre-wrap; }
+
+        body { background: #f4f4f6; }
+        .page-header { background: #2b082e; color: #fff; padding: 28px 0; text-align: center; border-bottom: 4px solid #4a0e4e; }
+        .page-header img { max-height: 70px; width: auto; object-fit: contain; margin-bottom: 10px; }
+        .page-header h1 { font-size: 26px; margin: 0 0 8px; }
+        .page-header p { margin: 0; color: #eee; }
+        .page-main { width: 90%; max-width: 1050px; margin: 24px auto 50px; }
+        .back-home { display: inline-block; margin-bottom: 22px; color: #4a0e4e; text-decoration: none; font-weight: bold; }
+        .intro, .event-card, .notice { background: #fff; padding: 22px; border-radius: 8px; box-shadow: 0 4px 14px rgba(0,0,0,.06); }
+        .intro { line-height: 1.8; margin-bottom: 22px; }
+        .event-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 18px; }
+        .event-card { border-top: 4px solid #4a0e4e; }
+        .event-card i { color: #6b1170; font-size: 26px; }
+        .event-card h2 { color: #2b082e; font-size: 19px; margin: 12px 0 8px; }
+        .event-card p, .steps li { color: #555; font-size: 14px; line-height: 1.8; }
+        .steps { background: #fff; padding: 22px; border-radius: 8px; margin-top: 20px; }
+        .steps h2 { color: #2b082e; }
+        .steps ol { padding-right: 22px; }
+        .notice { margin-top: 20px; border-right: 4px solid #6b1170; line-height: 1.8; }
+        .interest-form { margin-top: 20px; background: #fff; padding: 22px; border-radius: 8px; box-shadow: 0 4px 14px rgba(0,0,0,.06); }
+        .interest-form h2 { color: #2b082e; }
+        .form-group { margin: 16px 0; }
+        .form-group label { display: block; margin-bottom: 7px; color: #2b082e; font-weight: bold; }
+        .form-control { width: 100%; padding: 11px; border: 1px solid #ccc; border-radius: 5px; font: inherit; box-sizing: border-box; }
+        .form-control:focus { outline: 2px solid #6b1170; border-color: transparent; }
+        textarea.form-control { min-height: 100px; resize: vertical; }
+        .submit-button { border: 0; border-radius: 5px; padding: 11px 18px; background: #4a0e4e; color: #fff; font: inherit; font-weight: bold; cursor: pointer; }
+        .submit-button:hover { background: #6b1170; }
+        #form-status { font-size: 13px; line-height: 1.8; }
+        .action-link { display: inline-block; margin: 14px 0 0 8px; padding: 11px 18px; border-radius: 5px; background: #4a0e4e; color: #fff; text-decoration: none; font-weight: bold; }
+        .action-link:hover { background: #6b1170; }
+        @media (max-width: 600px) { .page-header h1 { font-size: 21px; } }
+    </style>
+</head>
+<body>
+    <header class="page-header">
+        <img src="logo1.png" alt="شعار Nova AI">
+        <h1>الهاكاثونات والمسابقات</h1>
+        <p>ابتكر، تعاون، وحوّل أفكارك إلى حلول تقنية</p>
+    </header>
+
+    <main class="page-main">
+        <a href="nova.html" class="back-home"><i class="fas fa-arrow-right"></i> العودة إلى الصفحة الرئيسية</a>
+        <section class="intro">
+            <h2>مساحة للتحدي وصناعة الأفكار</h2>
+            <p>تجمع الهاكاثونات والمسابقات المشاركين للعمل ضمن فرق على أفكار ومشكلات واقعية. تعرّف على المجالات التي يمكن أن تدور حولها الفعاليات، وتواصل مع الدار لمعرفة الإعلانات ومواعيد التسجيل عند نشرها.</p>
+        </section>
+
+        <section class="event-grid" aria-label="مجالات الهاكاثونات والمسابقات">
+            <article class="event-card">
+                <i class="fas fa-laptop-code" aria-hidden="true"></i>
+                <h2>هاكاثونات البرمجة</h2>
+                <p>طوّروا فكرة أو نموذجاً أولياً ضمن فريق يجمع مهارات البرمجة والتصميم وتحليل المشكلات.</p>
+            </article>
+            <article class="event-card">
+                <i class="fas fa-brain" aria-hidden="true"></i>
+                <h2>تحديات الذكاء الاصطناعي</h2>
+                <p>استكشفوا تطبيقات الذكاء الاصطناعي والبيانات لبناء حلول مفيدة ومسؤولة.</p>
+            </article>
+            <article class="event-card">
+                <i class="fas fa-lightbulb" aria-hidden="true"></i>
+                <h2>مسابقات الابتكار</h2>
+                <p>اعرضوا أفكاراً ومشاريع تقنية، واشرحوا المشكلة والأثر المتوقع وخطوات التطوير.</p>
+            </article>
+        </section>
+
+        <section class="steps">
+            <h2>للاستعداد للمشاركة</h2>
+            <ol>
+                <li>تابع إعلانات دار الذكاء الاصطناعي لمعرفة تفاصيل كل فعالية وشروطها.</li>
+                <li>حضّر فكرة أولية أو كوّن فريقاً مهتماً بالمجال.</li>
+                <li>راسل الدار للاستفسار عن التسجيل والفعاليات القادمة.</li>
+            </ol>
+        </section>
+
+        <section class="interest-form" id="competition-interest">
+            <h2>سجّل اهتمامك بالهاكاثونات والمسابقات</h2>
+            <p>أرسل بياناتك ومجال اهتمامك، وسيُحفظ الطلب لدى الدار للتواصل معك عند الإعلان عن فعاليات مناسبة.</p>
+            <form id="competition-form" method="post">
+                <div class="form-group">
+                    <label for="participant-name">الاسم الكامل</label>
+                    <input class="form-control" id="participant-name" name="name" type="text" maxlength="120" autocomplete="name" required minlength="2">
+                </div>
+                <div class="form-group">
+                    <label for="participant-email">البريد الإلكتروني</label>
+                    <input class="form-control" id="participant-email" name="email" type="email" maxlength="254" autocomplete="email" required minlength="5">
+                </div>
+                <div class="form-group">
+                    <label for="participant-phone">رقم الهاتف (اختياري)</label>
+                    <input class="form-control" id="participant-phone" name="phone" type="tel" maxlength="40" autocomplete="tel">
+                </div>
+                <div class="form-group">
+                    <label for="participant-topic">الفعالية أو المجال الذي يهمك</label>
+                    <select class="form-control" id="participant-topic" name="topic" required>
+                        <option value="">اختر مجالاً</option>
+                        <option>هاكاثونات البرمجة</option>
+                        <option>تحديات الذكاء الاصطناعي</option>
+                        <option>مسابقات الابتكار</option>
+                        <option>مجال آخر</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="participant-message">رسالة أو فكرة أولية (اختياري)</label>
+                    <textarea class="form-control" id="participant-message" name="message" maxlength="2000"></textarea>
+                </div>
+                <button class="submit-button" type="submit">إرسال طلب الاهتمام</button>
+                <p id="form-status" role="status" aria-live="polite"></p>
+            </form>
+            <p>تُستخدم البيانات للرد على طلبك، ولا يمكن للزوار الاطلاع عليها.</p>
+        </section>
+
+        
+        <section class="published-competitions" style="margin-top: 25px; margin-bottom: 25px;">
+            <h2 style="color: #2b082e; font-size: 21px; margin-bottom: 14px;"><i class="fas fa-bullhorn" style="color: #6b1170;"></i> الفعاليات والهاكاثونات المعلنة</h2>
+            <div id="dynamic-competitions-list">
+                <p style="color: #666; font-size: 14px;"><i class="fas fa-spinner fa-spin"></i> جارٍ التحقق من المسابقات المعلنة...</p>
+            </div>
+        </section>
+
+        <section class="notice">
+            <strong>تنبيه:</strong> لا توجد مواعيد أو مسابقات مفتوحة معلنة على هذه الصفحة حالياً. سيتم تحديثها عند توفر المعلومات الرسمية.
+            <a class="action-link" href="competition.html">مجالات الابتكار والمسابقات</a>
+        </section>
+    </main>
+
+    <footer style="text-align:center;padding:22px;background:#220525;color:#fff;">
+        <p>&copy; Nova AI - جامعة تمنراست</p>
+    </footer>
+
+    <script type="module">
+        import { getRequestErrorMessage, submitPublicRequest } from "./firebase-forms.js";
+
+        const form = document.getElementById("competition-form");
+        const status = document.getElementById("form-status");
+        const submitButton = form.querySelector('button[type="submit"]');
+
+        form.addEventListener("submit", async function (event) {
+            event.preventDefault();
+            if (!form.reportValidity()) return;
+
+            submitButton.disabled = true;
+            status.textContent = "جارٍ حفظ طلب الاهتمام...";
+            status.style.color = "#4a0e4e";
+
+            try {
+                await submitPublicRequest("competitionRequests", form);
+                form.reset();
+                status.textContent = "تم حفظ طلبك. ستتواصل معك الدار عند توفر فعالية مناسبة.";
+                status.style.color = "green";
+            } catch (error) {
+                console.error("تعذر حفظ طلب المسابقة في Firebase:", error);
+                status.textContent = getRequestErrorMessage(error);
+                status.style.color = "red";
+            } finally {
+                submitButton.disabled = false;
+            }
+        });
+    </script>
+
+    <script type="module">
+        import { collection, getDocs, query, where } from "https://www.gstatic.com/firebasejs/13.1.0/firebase-firestore.js";
+        import { db } from "./firebase.js";
+
+        async function loadCompetitions() {
+            const container = document.getElementById("dynamic-competitions-list");
+            try {
+                const q = query(collection(db, "competitions"), where("published", "==", true));
+                const snapshot = await getDocs(q);
+
+                if (snapshot.empty) {
+                    container.innerHTML = `
+                        <div style="background:#fff; padding:18px; border-radius:8px; border-right:4px solid #6b1170; line-height:1.8; box-shadow:0 3px 10px rgba(0,0,0,0.04);">
+                            <strong>لا توجد مسابقات أو هاكاثونات مفتوحة معلنة حالياً.</strong>
+                            <p style="margin:5px 0 0 0; color:#666; font-size:14px;">يتم الإعلان عن المواعيد والفعاليات الجديدة هنا فور اعتمادها. يمكنك إرسال رغبتك عبر <a href="#competition-interest" style="color:#4a0e4e; font-weight:bold;">استمارة تسجيل الاهتمام أدناه</a> للتواصل معك عند فتح التسجيل.</p>
+                        </div>
+                    `;
+                    return;
+                }
+
+                const list = snapshot.docs.map(d => d.data());
+                list.sort((a, b) => (b.createdAt?.toMillis?.() || 0) - (a.createdAt?.toMillis?.() || 0));
+                container.replaceChildren();
+
+                list.forEach(comp => {
+                    const card = document.createElement("article");
+                    card.className = "event-live-card";
+
+                    const header = document.createElement("h3");
+                    header.textContent = comp.title || "مسابقة";
+
+                    const badge = document.createElement("span");
+                    badge.className = "badge " + (comp.status === "open" ? "badge-open" : (comp.status === "soon" ? "badge-soon" : "badge-closed"));
+                    badge.innerHTML = comp.status === "open"
+                        ? "<i class='fas fa-check-circle'></i> التسجيل مفتوح الآن"
+                        : (comp.status === "soon" ? "<i class='fas fa-clock'></i> الإعلان قريباً" : "<i class='fas fa-times-circle'></i> اكتمل العدد");
+                    header.appendChild(badge);
+
+                    const badgesDiv = document.createElement("div");
+                    badgesDiv.className = "event-badges";
+                    if (comp.eventDate) {
+                        const dateBadge = document.createElement("span");
+                        dateBadge.className = "badge badge-meta";
+                        dateBadge.innerHTML = "<i class='far fa-calendar-alt'></i> " + comp.eventDate;
+                        badgesDiv.appendChild(dateBadge);
+                    }
+                    if (comp.targetAudience) {
+                        const targetBadge = document.createElement("span");
+                        targetBadge.className = "badge badge-meta";
+                        targetBadge.innerHTML = "<i class='fas fa-users'></i> " + comp.targetAudience;
+                        badgesDiv.appendChild(targetBadge);
+                    }
+
+                    const desc = document.createElement("p");
+                    desc.className = "event-desc";
+                    desc.textContent = comp.description || "";
+
+                    const action = document.createElement("div");
+                    if (comp.status === "open") {
+                        action.innerHTML = "<a href='#competition-interest' class='action-link'><i class='fas fa-pen'></i> سجّل اهتمامك بهذا الهاكاثون أدناه</a>";
+                    }
+
+                    card.append(header, badgesDiv, desc, action);
+                    container.appendChild(card);
+                });
+            } catch (err) {
+                console.error("خطأ في جلب المسابقات:", err);
+                container.innerHTML = "<p style='color:#666;'>تعذر جلب المسابقات المعلنة حالياً.</p>";
+            }
+        }
+
+        loadCompetitions();
+    </script>
+
+</body>
+</html>

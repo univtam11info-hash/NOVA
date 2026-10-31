@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="طلب التسجيل والاستفسار عن دورات دار الذكاء الاصطناعي Nova AI.">
+    <title>طلب التسجيل - Nova AI</title>
+    <link rel="stylesheet" href="nova.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body { background: #f4f4f6; }
+        .page-header { background: #2b082e; color: #fff; padding: 25px 0; text-align: center; border-bottom: 4px solid #4a0e4e; }
+        .page-header img { max-height: 65px; width: auto; margin-bottom: 8px; }
+        .page-header h1 { font-size: 25px; margin: 0 0 8px; }
+        .page-header p { margin: 0; color: #eee; }
+        .page-main { width: 90%; max-width: 720px; margin: 24px auto 50px; }
+        .back-home { display: inline-block; margin-bottom: 18px; color: #4a0e4e; text-decoration: none; font-weight: bold; }
+        .form-card { background: #fff; padding: 28px; border-radius: 9px; box-shadow: 0 5px 20px rgba(0,0,0,.08); }
+        .form-card h2 { color: #2b082e; margin-top: 0; }
+        .form-card > p { color: #555; line-height: 1.8; }
+        .form-group { margin: 18px 0; }
+        .form-group label { display: block; margin-bottom: 7px; color: #2b082e; font-weight: bold; }
+        .form-control { width: 100%; padding: 11px; border: 1px solid #ccc; border-radius: 5px; font: inherit; box-sizing: border-box; }
+        .form-control:focus { outline: 2px solid #6b1170; border-color: transparent; }
+        textarea.form-control { min-height: 110px; resize: vertical; }
+        .submit-button { border: 0; border-radius: 5px; padding: 12px 20px; color: #fff; background: #4a0e4e; font: inherit; font-weight: bold; cursor: pointer; }
+        .submit-button:hover { background: #6b1170; }
+        .privacy-note, #form-status { font-size: 13px; line-height: 1.8; color: #666; }
+        #form-status { color: #2b082e; margin-top: 14px; }
+        @media (max-width: 600px) { .page-header h1 { font-size: 21px; } .form-card { padding: 20px; } }
+    </style>
+</head>
+<body>
+    <header class="page-header">
+        <img src="logo1.png" alt="شعار Nova AI">
+        <h1>طلب التسجيل في الدورات</h1>
+        <p>أرسل استفسارك إلى فريق الدار</p>
+    </header>
+
+    <main class="page-main">
+        <a href="courses.html" class="back-home"><i class="fas fa-arrow-right"></i> العودة إلى الدورات</a>
+        <section class="form-card">
+            <h2>بيانات التواصل والاهتمام</h2>
+            <p>أرسل بياناتك ليتم حفظ طلب التسجيل في قاعدة بيانات الدار. تستخدم البيانات للرد على طلبك ومتابعة التسجيل.</p>
+            <form id="registration-form" method="post">
+                <div class="form-group">
+                    <label for="name">الاسم الكامل</label>
+                    <input class="form-control" id="name" name="name" type="text" maxlength="120" autocomplete="name" required minlength="2">
+                </div>
+                <div class="form-group">
+                    <label for="email">البريد الإلكتروني</label>
+                    <input class="form-control" id="email" name="email" type="email" maxlength="254" autocomplete="email" required minlength="5">
+                </div>
+                <div class="form-group">
+                    <label for="phone">رقم الهاتف (اختياري)</label>
+                    <input class="form-control" id="phone" name="phone" type="tel" maxlength="40" autocomplete="tel">
+                </div>
+                <div class="form-group">
+                    <label for="interest">مجال الدورة</label>
+                    <select class="form-control" id="interest" name="topic" required>
+                        <option value="">اختر مجالاً</option>
+                        <option>الذكاء الاصطناعي وتعلم الآلة</option>
+                        <option>الأمن السيبراني</option>
+                        <option>أمن الشبكات والأنظمة</option>
+                        <option>شبكات الحاسوب وهندسة الاتصالات</option>
+                        <option>برمجة وتطوير مواقع الويب</option>
+                        <option>تطوير تطبيقات الهواتف الذكية</option>
+                        <option>التصميم الجرافيكي وتجربة المستخدم UI/UX</option>
+                        <option>تحليل واستكشاف البيانات</option>
+                        <option>أساسيات البرمجة والخوارزميات</option>
+                        <option>الروبوتات والأنظمة المدمجة وإنترنت الأشياء</option>
+                        <option>الحوسبة السحابية وهندسة النظم</option>
+                        <option>مشاريع وابتكار تقني</option>
+                        <option>مجال آخر</option>
+</select>
+                </div>
+                <div class="form-group">
+                    <label for="message">رسالة أو استفسار (اختياري)</label>
+                    <textarea class="form-control" id="message" name="message" maxlength="2000"></textarea>
+                </div>
+                <button class="submit-button" type="submit"><i class="fas fa-paper-plane"></i> إرسال طلب التسجيل</button>
+                <p id="form-status" role="status" aria-live="polite"></p>
+            </form>
+            <p class="privacy-note">يمكنك أيضاً التواصل مباشرة عبر <a href="mailto:gattalelhachemi@gmail.com">gattalelhachemi@gmail.com</a>. لا يمكن للزوار الاطلاع على طلباتك.</p>
+        </section>
+    </main>
+
+    <footer style="text-align:center;padding:22px;background:#220525;color:#fff;"><p>&copy; Nova AI - جامعة تمنراست</p></footer>
+
+    <script type="module">
+        import { getRequestErrorMessage, submitPublicRequest } from "./firebase-forms.js";
+
+        const form = document.getElementById("registration-form");
+        const status = document.getElementById("form-status");
+        const submitButton = form.querySelector('button[type="submit"]');
+
+        form.addEventListener("submit", async function (event) {
+            event.preventDefault();
+            if (!form.reportValidity()) return;
+
+            submitButton.disabled = true;
+            status.textContent = "جارٍ حفظ طلب التسجيل...";
+            status.style.color = "#4a0e4e";
+
+            try {
+                await submitPublicRequest("courseRegistrations", form);
+                form.reset();
+                status.textContent = "تم حفظ طلبك بنجاح. ستتواصل معك الدار عند متابعة التسجيل.";
+                status.style.color = "green";
+            } catch (error) {
+                console.error("تعذر حفظ طلب التسجيل في Firebase:", error);
+                status.textContent = getRequestErrorMessage(error);
+                status.style.color = "red";
+            } finally {
+                submitButton.disabled = false;
+            }
+        });
+    </script>
+</body>
+</html>

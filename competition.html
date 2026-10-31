@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="المسابقات والهاكاثونات والأنشطة الابتكارية في دار الذكاء الاصطناعي Nova AI.">
+    <title>المسابقات والابتكار - Nova AI</title>
+    <link rel="stylesheet" href="nova.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .event-live-card { background: #fff; border-radius: 8px; padding: 22px; margin-bottom: 18px; box-shadow: 0 4px 14px rgba(0,0,0,.06); border-top: 4px solid #4a0e4e; }
+        .event-live-card h3 { color: #2b082e; font-size: 19px; margin: 0 0 10px 0; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px; }
+        .event-badges { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 12px; }
+        .badge { display: inline-flex; align-items: center; gap: 5px; padding: 4px 10px; border-radius: 14px; font-size: 12px; font-weight: bold; }
+        .badge-open { background: #dcfce7; color: #15803d; }
+        .badge-soon { background: #fef3c7; color: #b45309; }
+        .badge-closed { background: #fee2e2; color: #b91c1c; }
+        .badge-meta { background: #f3e8f5; color: #4a0e4e; }
+        .event-desc { color: #555; font-size: 14px; line-height: 1.8; margin-bottom: 15px; white-space: pre-wrap; }
+
+        body { background: #f4f4f6; }
+        .page-header { background: #2b082e; color: #fff; padding: 28px 0; text-align: center; border-bottom: 4px solid #4a0e4e; }
+        .page-header img { max-height: 70px; width: auto; margin-bottom: 10px; }
+        .page-header h1 { font-size: 26px; margin: 0 0 8px; }
+        .page-header p { margin: 0; color: #eee; }
+        .page-main { width: 90%; max-width: 1000px; margin: 24px auto 50px; }
+        .back-home { display: inline-block; margin-bottom: 22px; color: #4a0e4e; text-decoration: none; font-weight: bold; }
+        .intro, .challenge, .steps { background: #fff; border-radius: 8px; padding: 22px; box-shadow: 0 4px 14px rgba(0,0,0,.06); }
+        .intro { line-height: 1.8; margin-bottom: 22px; }
+        .challenge-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 18px; }
+        .challenge { border-top: 4px solid #4a0e4e; }
+        .challenge i { color: #6b1170; font-size: 25px; }
+        .challenge h2 { color: #2b082e; font-size: 18px; margin: 12px 0 8px; }
+        .challenge p, .steps li { color: #555; font-size: 14px; line-height: 1.8; }
+        .steps { margin-top: 22px; }
+        .steps h2 { color: #2b082e; }
+        .steps ol { padding-right: 22px; }
+        .action-link { display: inline-block; margin-top: 14px; padding: 11px 18px; border-radius: 5px; background: #4a0e4e; color: #fff; text-decoration: none; font-weight: bold; }
+        .action-link:hover { background: #6b1170; }
+        @media (max-width: 600px) { .page-header h1 { font-size: 21px; } }
+    </style>
+</head>
+<body>
+    <header class="page-header">
+        <img src="logo1.png" alt="شعار Nova AI">
+        <h1>المسابقات والابتكار</h1>
+        <p>أفكار جديدة، فرق متعاونة، وحلول تقنية للمستقبل</p>
+    </header>
+
+    <main class="page-main">
+        <a href="nova.html" class="back-home"><i class="fas fa-arrow-right"></i> العودة إلى الصفحة الرئيسية</a>
+        <section class="intro">
+            <h2>شارك بفكرتك</h2>
+            <p>تدعم الدار ثقافة الابتكار والعمل الجماعي من خلال الأنشطة والمسابقات التقنية. تُعلن تفاصيل كل مسابقة ومواعيدها عند توفرها؛ تواصل معنا للاطلاع على الفعاليات المفتوحة حالياً.</p>
+        </section>
+        
+        <section class="published-competitions" style="margin-bottom: 30px;">
+            <h2 style="color: #2b082e; font-size: 21px; margin-bottom: 14px;"><i class="fas fa-bullhorn" style="color: #6b1170;"></i> المسابقات والهاكاثونات المعلنة</h2>
+            <div id="dynamic-competitions-list">
+                <p style="color: #666; font-size: 14px;"><i class="fas fa-spinner fa-spin"></i> جارٍ التحقق من الإعلانات الرسمية...</p>
+            </div>
+        </section>
+
+        <section class="challenge-grid" aria-label="مجالات المسابقات">
+            <article class="challenge">
+                <i class="fas fa-laptop-code" aria-hidden="true"></i>
+                <h2>تحديات البرمجة</h2>
+                <p>تدرب على التفكير الخوارزمي، وشارك في بناء حلول برمجية ضمن وقت وفريق محددين.</p>
+            </article>
+            <article class="challenge">
+                <i class="fas fa-robot" aria-hidden="true"></i>
+                <h2>مشاريع الذكاء الاصطناعي</h2>
+                <p>اقترح تطبيقاً عملياً للذكاء الاصطناعي وقدم نموذجاً أولياً يعالج مشكلة واضحة.</p>
+            </article>
+            <article class="challenge">
+                <i class="fas fa-people-group" aria-hidden="true"></i>
+                <h2>هاكاثون وابتكار جماعي</h2>
+                <p>تعاون مع فريق متعدد المهارات لتطوير فكرة وعرضها في صورة مشروع قابل للتطوير.</p>
+            </article>
+        </section>
+        <section class="steps">
+            <h2>كيف تستعد للمشاركة؟</h2>
+            <ol>
+                <li>تابع إعلانات الدار لمعرفة شروط وموعد الفعالية القادمة.</li>
+                <li>حدد المشكلة أو الفكرة التي ترغب في العمل عليها، وابحث عن أعضاء فريقك.</li>
+                <li>تواصل معنا للاستفسار عن التسجيل وآلية المشاركة.</li>
+            </ol>
+            <a class="action-link" href="hac.html#competition-interest">سجّل اهتمامك بالمسابقات</a>
+            <a class="action-link" href="gallery.html">شاهد صور النشاطات</a>
+        </section>
+    </main>
+
+    <footer style="text-align:center;padding:22px;background:#220525;color:#fff;"><p>&copy; Nova AI - جامعة تمنراست</p></footer>
+
+    <script type="module">
+        import { collection, getDocs, limit, orderBy, query, where } from "https://www.gstatic.com/firebasejs/13.1.0/firebase-firestore.js";
+        import { db } from "./firebase.js";
+
+        async function loadCompetitions() {
+            const container = document.getElementById("dynamic-competitions-list");
+            try {
+                const q = query(collection(db, "competitions"), where("published", "==", true));
+                const snapshot = await getDocs(q);
+
+                if (snapshot.empty) {
+                    container.innerHTML = `
+                        <div style="background:#fff; padding:18px; border-radius:8px; border-right:4px solid #6b1170; line-height:1.8; box-shadow:0 3px 10px rgba(0,0,0,0.04);">
+                            <strong>لا توجد مسابقات أو هاكاثونات مفتوحة معلنة حالياً.</strong>
+                            <p style="margin:5px 0 0 0; color:#666; font-size:14px;">يتم الإعلان عن المواعيد والفعاليات الجديدة هنا فور اعتمادها. يمكنك إرسال رغبتك عبر <a href="hac.html#competition-interest" style="color:#4a0e4e; font-weight:bold;">استمارة تسجيل الاهتمام</a> للتواصل معك عند فتح التسجيل.</p>
+                        </div>
+                    `;
+                    return;
+                }
+
+                const list = snapshot.docs.map(d => d.data());
+                list.sort((a, b) => (b.createdAt?.toMillis?.() || 0) - (a.createdAt?.toMillis?.() || 0));
+                container.replaceChildren();
+
+                list.forEach(comp => {
+                    const card = document.createElement("article");
+                    card.className = "event-live-card";
+
+                    const header = document.createElement("h3");
+                    header.textContent = comp.title || "مسابقة";
+
+                    const badge = document.createElement("span");
+                    badge.className = "badge " + (comp.status === "open" ? "badge-open" : (comp.status === "soon" ? "badge-soon" : "badge-closed"));
+                    badge.innerHTML = comp.status === "open"
+                        ? "<i class='fas fa-check-circle'></i> التسجيل مفتوح الآن"
+                        : (comp.status === "soon" ? "<i class='fas fa-clock'></i> الإعلان قريباً" : "<i class='fas fa-times-circle'></i> اكتمل العدد");
+                    header.appendChild(badge);
+
+                    const badgesDiv = document.createElement("div");
+                    badgesDiv.className = "event-badges";
+                    if (comp.eventDate) {
+                        const dateBadge = document.createElement("span");
+                        dateBadge.className = "badge badge-meta";
+                        dateBadge.innerHTML = "<i class='far fa-calendar-alt'></i> " + comp.eventDate;
+                        badgesDiv.appendChild(dateBadge);
+                    }
+                    if (comp.targetAudience) {
+                        const targetBadge = document.createElement("span");
+                        targetBadge.className = "badge badge-meta";
+                        targetBadge.innerHTML = "<i class='fas fa-users'></i> " + comp.targetAudience;
+                        badgesDiv.appendChild(targetBadge);
+                    }
+
+                    const desc = document.createElement("p");
+                    desc.className = "event-desc";
+                    desc.textContent = comp.description || "";
+
+                    const action = document.createElement("div");
+                    if (comp.status === "open") {
+                        action.innerHTML = "<a href='hac.html#competition-interest' class='action-link'><i class='fas fa-pen'></i> سجّل في هذه المسابقة الآن</a>";
+                    }
+
+                    card.append(header, badgesDiv, desc, action);
+                    container.appendChild(card);
+                });
+            } catch (err) {
+                console.error("خطأ في جلب المسابقات:", err);
+                container.innerHTML = "<p style='color:#666;'>تعذر جلب المسابقات المعلنة حالياً.</p>";
+            }
+        }
+
+        loadCompetitions();
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="صور من نشاطات وورشات ومشاريع دار الذكاء الاصطناعي Nova AI بجامعة تمنراست.">
+    <title>معرض النشاطات - Nova AI</title>
+    <link rel="stylesheet" href="nova.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body { background: #f4f4f6; }
+        .page-header { background: #2b082e; color: #fff; padding: 28px 0; text-align: center; border-bottom: 4px solid #4a0e4e; }
+        .page-header img { max-height: 70px; width: auto; object-fit: contain; margin-bottom: 10px; }
+        .page-header h1 { font-size: 26px; margin: 0 0 8px; }
+        .page-header p { margin: 0; color: #eee; }
+        .page-main { width: 90%; max-width: 1100px; margin: 24px auto 50px; }
+        .back-home { display: inline-block; margin-bottom: 22px; color: #4a0e4e; text-decoration: none; font-weight: bold; }
+        .intro { background: #fff; padding: 22px; border-radius: 8px; margin-bottom: 24px; line-height: 1.8; }
+        .gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; }
+        .gallery-card { background: #fff; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 14px rgba(0,0,0,.08); }
+        .gallery-card img { display: block; width: 100%; height: 220px; object-fit: cover; }
+        .gallery-card div { padding: 16px; }
+        .gallery-card h2 { color: #2b082e; font-size: 18px; margin: 0 0 8px; }
+        .gallery-card p { color: #555; font-size: 14px; line-height: 1.7; margin: 0; }
+        .gallery-link { display: inline-block; margin-top: 24px; background: #4a0e4e; color: #fff; padding: 11px 18px; border-radius: 5px; text-decoration: none; font-weight: bold; }
+        .gallery-link:hover { background: #6b1170; }
+        @media (max-width: 600px) { .page-header h1 { font-size: 21px; } .gallery-card img { height: 190px; } }
+    
+        /* ===== LIGHTBOX ===== */
+        .gallery-card img { cursor: zoom-in; }
+        /* ===== LIGHTBOX ===== */
+        #nova-lightbox {
+            position: fixed;
+            inset: 0;
+            z-index: 9999;
+            background: rgba(0,0,0,.92);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            animation: lbFadeIn .2s ease;
+        }
+        @keyframes lbFadeIn { from { opacity:0 } to { opacity:1 } }
+        #lb-content-wrap {
+            position: relative;
+            max-width: 92vw;
+            max-height: 85vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        #lb-media-slot img,
+        #lb-media-slot video {
+            max-width: 90vw;
+            max-height: 80vh;
+            border-radius: 8px;
+            object-fit: contain;
+            display: block;
+            box-shadow: 0 8px 40px rgba(0,0,0,.6);
+            background: #000;
+        }
+        #lb-media-slot iframe {
+            width: min(90vw, 900px);
+            height: min(70vh, 500px);
+            border: none;
+            border-radius: 8px;
+        }
+        #lb-counter {
+            color: #ccc;
+            font-size: 13px;
+            margin-top: 10px;
+            direction: ltr;
+        }
+        #lb-close {
+            position: fixed;
+            top: 18px;
+            left: 18px;
+            background: rgba(255,255,255,.15);
+            color: #fff;
+            border: none;
+            border-radius: 50%;
+            width: 42px;
+            height: 42px;
+            font-size: 20px;
+            cursor: pointer;
+            z-index: 10001;
+            transition: background .2s;
+        }
+        #lb-close:hover { background: rgba(255,255,255,.35); }
+        #lb-prev, #lb-next {
+            position: fixed;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255,255,255,.15);
+            color: #fff;
+            border: none;
+            border-radius: 50%;
+            width: 48px;
+            height: 48px;
+            font-size: 22px;
+            cursor: pointer;
+            z-index: 10001;
+            transition: background .2s;
+        }
+        #lb-prev:hover, #lb-next:hover { background: rgba(255,255,255,.35); }
+        #lb-prev { right: 12px; }
+        #lb-next { left: 12px; }
+        .media-item { cursor: zoom-in; }</style>
+</head>
+<body>
+    <header class="page-header">
+        <img src="logo1.png" alt="شعار Nova AI">
+        <h1>معرض النشاطات والمشاريع</h1>
+        <p>لقطات من التعلم والابتكار في دار الذكاء الاصطناعي</p>
+    </header>
+
+    <main class="page-main">
+        <a href="nova.html" class="back-home"><i class="fas fa-arrow-right"></i> العودة إلى الصفحة الرئيسية</a>
+        <section class="intro">
+            <h2>من داخل Nova AI</h2>
+            <p>نستعرض هنا صوراً تمثل مجالات عمل الدار، من ورشات الذكاء الاصطناعي والبرمجة إلى مشاريع الطلبة والأنشطة العلمية. للاطلاع على الفعاليات المنشورة، تفضل بزيارة معرض النشاطات.</p>
+        </section>
+
+        <section class="gallery-grid" aria-label="صور من نشاطات الدار">
+            <article class="gallery-card">
+                <img src="aq.jpeg" alt="نشاط تدريبي في مجال الذكاء الاصطناعي">
+                <div><h2>ورشات الذكاء الاصطناعي</h2><p>تعلّم المفاهيم والأدوات الحديثة من خلال التدريب والتطبيق.</p></div>
+            </article>
+            <article class="gallery-card">
+                <img src="aw.jpeg" alt="نشاط ابتكار وبرمجة">
+                <div><h2>الابتكار والبرمجة</h2><p>مساحة لتطوير الأفكار والعمل على حلول تقنية ومشاريع جماعية.</p></div>
+            </article>
+            <article class="gallery-card">
+                <img src="ai.jpeg" alt="مشروع تقني للطلبة">
+                <div><h2>مشاريع الطلبة</h2><p>أفكار ومشاريع طلابية في مجالات التكنولوجيا والذكاء الاصطناعي.</p></div>
+            </article>
+            <article class="gallery-card">
+                <img src="ad.jpeg" alt="فعالية علمية في دار الذكاء الاصطناعي">
+                <div><h2>الفعاليات العلمية</h2><p>أنشطة تجمع الطلبة والمهتمين لتبادل الخبرات والمعرفة.</p></div>
+            </article>
+        </section>
+
+        <a class="gallery-link" href="adem.html"><i class="fas fa-images"></i> مشاهدة النشاطات المنشورة</a>
+    </main>
+
+    <footer style="text-align:center;padding:22px;background:#220525;color:#fff;">
+        <p>&copy; Nova AI - جامعة تمنراست</p>
+    </footer>
+
+    <!-- ===== LIGHTBOX OVERLAY ===== -->
+    <div id="nova-lightbox" role="dialog" aria-modal="true" aria-label="عارض الوسائط" style="display:none;">
+        <button id="lb-close" title="إغلاق (Esc)">&#10005;</button>
+        <button id="lb-prev" title="السابق">&#10094;</button>
+        <button id="lb-next" title="التالي">&#10095;</button>
+        <div id="lb-content-wrap">
+            <div id="lb-media-slot"></div>
+            <div id="lb-counter"></div>
+        </div>
+    </div>
+
+    <script>
+        // ===== GALLERY LIGHTBOX ENGINE =====
+        // ===== LIGHTBOX ENGINE =====
+        (function () {
+            let items = [];   // [{url, type}]
+            let idx   = 0;
+
+            const lb      = document.getElementById('nova-lightbox');
+            const slot    = document.getElementById('lb-media-slot');
+            const counter = document.getElementById('lb-counter');
+            const btnClose = document.getElementById('lb-close');
+            const btnPrev  = document.getElementById('lb-prev');
+            const btnNext  = document.getElementById('lb-next');
+
+            function isVideo(item) {
+                const t = (item.type || '').toLowerCase();
+                const u = item.url || '';
+                return t === 'video'
+                    || /^data:video\//i.test(u)
+                    || /\.(mp4|webm|mov)(\?.*)?$/i.test(u)
+                    || /youtube\.com|youtu\.be/i.test(u);
+            }
+
+            function isYT(url) {
+                return /youtube\.com|youtu\.be/i.test(url);
+            }
+
+            function ytId(url) {
+                const m = url.match(/(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?\/|.*[?&]v=))|youtu\.be\/)([^"&?\/\s]{11})/i);
+                return m ? m[1] : null;
+            }
+
+            function render() {
+                slot.innerHTML = '';
+                const item = items[idx];
+                const url  = item.url;
+                counter.textContent = (idx + 1) + ' / ' + items.length;
+
+                btnPrev.style.display = items.length > 1 ? '' : 'none';
+                btnNext.style.display = items.length > 1 ? '' : 'none';
+
+                if (isVideo(item)) {
+                    const vid = url;
+                    if (isYT(vid)) {
+                        const id  = ytId(vid);
+                        const fr  = document.createElement('iframe');
+                        fr.src    = 'https://www.youtube.com/embed/' + id + '?autoplay=1';
+                        fr.allow  = 'autoplay; fullscreen';
+                        fr.allowFullscreen = true;
+                        slot.appendChild(fr);
+                    } else {
+                        const v   = document.createElement('video');
+                        v.src     = vid;
+                        v.controls = true;
+                        v.autoplay = true;
+                        slot.appendChild(v);
+                    }
+                } else {
+                    const img = document.createElement('img');
+                    img.src   = url;
+                    img.alt   = '';
+                    slot.appendChild(img);
+                }
+            }
+
+            function open(mediaItems, startIdx) {
+                items = mediaItems;
+                idx   = startIdx;
+                render();
+                lb.style.display = 'flex';
+                document.body.style.overflow = 'hidden';
+                lb.focus && lb.focus();
+            }
+
+            function close() {
+                lb.style.display = 'none';
+                slot.innerHTML   = '';
+                document.body.style.overflow = '';
+            }
+
+            function prev() { idx = (idx - 1 + items.length) % items.length; render(); }
+            function next() { idx = (idx + 1) % items.length; render(); }
+
+            btnClose.addEventListener('click', close);
+            btnPrev.addEventListener('click', prev);
+            btnNext.addEventListener('click', next);
+
+            lb.addEventListener('click', function (e) {
+                if (e.target === lb) close();
+            });
+
+            document.addEventListener('keydown', function (e) {
+                if (lb.style.display === 'none') return;
+                if (e.key === 'Escape') close();
+                if (e.key === 'ArrowLeft')  next();
+                if (e.key === 'ArrowRight') prev();
+            });
+
+            // Touch swipe
+            let touchStartX = 0;
+            lb.addEventListener('touchstart', function (e) { touchStartX = e.touches[0].clientX; }, { passive: true });
+            lb.addEventListener('touchend', function (e) {
+                const dx = e.changedTouches[0].clientX - touchStartX;
+                if (Math.abs(dx) > 50) { dx < 0 ? next() : prev(); }
+            }, { passive: true });
+
+            // Expose opener globally so both static + dynamic cards can use it
+            window.novaLightbox = { open };
+        })();
+
+        // Collect all gallery images as one group
+        document.addEventListener('DOMContentLoaded', function () {
+            const imgs = Array.from(document.querySelectorAll('.gallery-card img'));
+            const mediaItems = imgs.map(function(img){ return { url: img.src, type: 'image' }; });
+            imgs.forEach(function(img, i){
+                img.addEventListener('click', function(){
+                    window.novaLightbox.open(mediaItems, i);
+                });
+            });
+        });
+    </script>
+</body>
+</html>

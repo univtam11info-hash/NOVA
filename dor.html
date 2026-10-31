@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="أرسل طلب اهتمام بالتسجيل في ورشات ودورات Nova AI القادمة.">
+    <title>التسجيل في الورشات - Nova AI</title>
+    <link rel="stylesheet" href="nova.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .course-live-card { background: #fff; border-radius: 8px; padding: 22px; margin-bottom: 18px; box-shadow: 0 4px 14px rgba(0,0,0,.06); border-top: 4px solid #6b1170; }
+        .course-live-card h3 { color: #2b082e; font-size: 19px; margin: 0 0 10px 0; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px; }
+        .course-badges { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 12px; }
+        .badge { display: inline-flex; align-items: center; gap: 5px; padding: 4px 10px; border-radius: 14px; font-size: 12px; font-weight: bold; }
+        .badge-open { background: #dcfce7; color: #15803d; }
+        .badge-soon { background: #fef3c7; color: #b45309; }
+        .badge-closed { background: #fee2e2; color: #b91c1c; }
+        .badge-meta { background: #f3e8f5; color: #4a0e4e; }
+        .course-desc { color: #555; font-size: 14px; line-height: 1.8; margin-bottom: 15px; white-space: pre-wrap; }
+
+        body { background: #f4f4f6; }
+        .page-header { background: #2b082e; color: #fff; padding: 26px 0; text-align: center; border-bottom: 4px solid #4a0e4e; }
+        .page-header img { max-height: 65px; width: auto; object-fit: contain; margin-bottom: 8px; }
+        .page-header h1 { font-size: 25px; margin: 0 0 8px; }
+        .page-header p { margin: 0; color: #eee; }
+        .page-main { width: 90%; max-width: 760px; margin: 24px auto 50px; }
+        .back-home { display: inline-block; margin-bottom: 18px; color: #4a0e4e; text-decoration: none; font-weight: bold; }
+        .form-card, .notice { background: #fff; padding: 26px; border-radius: 9px; box-shadow: 0 5px 20px rgba(0,0,0,.08); }
+        .form-card h2, .notice h2 { color: #2b082e; margin-top: 0; }
+        .form-card > p, .notice p { color: #555; line-height: 1.8; }
+        .form-group { margin: 18px 0; }
+        .form-group label { display: block; margin-bottom: 7px; color: #2b082e; font-weight: bold; }
+        .form-control { width: 100%; padding: 11px; border: 1px solid #ccc; border-radius: 5px; font: inherit; box-sizing: border-box; }
+        .form-control:focus { outline: 2px solid #6b1170; border-color: transparent; }
+        textarea.form-control { min-height: 100px; resize: vertical; }
+        .submit-button, .action-link { display: inline-block; border: 0; border-radius: 5px; padding: 11px 18px; color: #fff; background: #4a0e4e; font: inherit; font-weight: bold; text-decoration: none; cursor: pointer; }
+        .submit-button:hover, .action-link:hover { background: #6b1170; }
+        .notice { margin-top: 20px; border-right: 4px solid #6b1170; }
+        .privacy-note, #form-status { font-size: 13px; line-height: 1.8; color: #666; }
+        #form-status { color: #2b082e; margin-top: 14px; }
+        @media (max-width: 600px) { .page-header h1 { font-size: 21px; } .form-card, .notice { padding: 20px; } }
+    </style>
+</head>
+<body>
+    <header class="page-header">
+        <img src="logo1.png" alt="شعار Nova AI">
+        <h1>التسجيل في الورشات التدريبية</h1>
+        <p>سجّل اهتمامك ليتم التواصل معك عند الإعلان عن الورشات</p>
+    </header>
+
+    <main class="page-main">
+        <a href="nova.html" class="back-home"><i class="fas fa-arrow-right"></i> العودة إلى الصفحة الرئيسية</a>
+        <section class="form-card">
+            <h2>طلب اهتمام بورشة قادمة</h2>
+            <p>الورشات ومواعيدها ستُدرج لاحقاً. أرسل بياناتك ومجال اهتمامك ليُحفظ طلبك في قاعدة بيانات الدار، ويمكن لفريقها التواصل معك عند نشر ورشات مناسبة.</p>
+            <form id="workshop-form" method="post">
+                <div class="form-group">
+                    <label for="name">الاسم الكامل</label>
+                    <input class="form-control" id="name" name="name" type="text" maxlength="120" autocomplete="name" required minlength="2">
+                </div>
+                <div class="form-group">
+                    <label for="email">البريد الإلكتروني</label>
+                    <input class="form-control" id="email" name="email" type="email" maxlength="254" autocomplete="email" required minlength="5">
+                </div>
+                <div class="form-group">
+                    <label for="phone">رقم الهاتف (اختياري)</label>
+                    <input class="form-control" id="phone" name="phone" type="tel" maxlength="40" autocomplete="tel">
+                </div>
+                <div class="form-group">
+                    <label for="topic">مجال الورشة التي تهمك</label>
+                    <select class="form-control" id="topic" name="topic" required>
+                        <option value="">اختر مجالاً</option>
+                        <option>الذكاء الاصطناعي وتعلم الآلة</option>
+                        <option>الأمن السيبراني</option>
+                        <option>أمن الشبكات والأنظمة</option>
+                        <option>شبكات الحاسوب وهندسة الاتصالات</option>
+                        <option>برمجة وتطوير مواقع الويب</option>
+                        <option>تطوير تطبيقات الهواتف الذكية</option>
+                        <option>التصميم الجرافيكي وتجربة المستخدم UI/UX</option>
+                        <option>تحليل واستكشاف البيانات</option>
+                        <option>أساسيات البرمجة والخوارزميات</option>
+                        <option>الروبوتات والأنظمة المدمجة وإنترنت الأشياء</option>
+                        <option>الحوسبة السحابية وهندسة النظم</option>
+                        <option>مشاريع وابتكار تقني</option>
+                        <option>مجال آخر</option>
+</select>
+                </div>
+                <div class="form-group">
+                    <label for="message">رسالة أو مستوى الخبرة (اختياري)</label>
+                    <textarea class="form-control" id="message" name="message" maxlength="2000"></textarea>
+                </div>
+                <button class="submit-button" type="submit"><i class="fas fa-envelope"></i> إرسال طلب الاهتمام</button>
+                <p id="form-status" role="status" aria-live="polite"></p>
+            </form>
+            <p class="privacy-note">تُحفظ بيانات الطلب لدى الدار للرد على استفسارك ومتابعة الورشات. لا يمكن للزوار الاطلاع عليها.</p>
+        </section>
+
+        
+        <section class="published-courses" style="margin-top: 25px; margin-bottom: 25px;">
+            <h2 style="color: #2b082e; font-size: 21px; margin-bottom: 14px;"><i class="fas fa-chalkboard" style="color: #6b1170;"></i> الورشات والدورات المتاحة حالياً</h2>
+            <div id="dynamic-courses-list">
+                <p style="color: #666; font-size: 14px;"><i class="fas fa-spinner fa-spin"></i> جارٍ التحقق من الورشات المتاحة...</p>
+            </div>
+        </section>
+
+        <section class="notice">
+            <h2>هل تريد معرفة الدورات المتاحة الآن؟</h2>
+            <p>تفضل إلى صفحة الدورات التدريبية للاطلاع على مجالات التدريب أو تواصل مباشرة مع دار الذكاء الاصطناعي.</p>
+            <a class="action-link" href="courses.html">عرض مجالات الدورات</a>
+            <a class="action-link" href="about.html#contact">مراسلة الدار</a>
+        </section>
+    </main>
+
+    <footer style="text-align:center;padding:22px;background:#220525;color:#fff;">
+        <p>&copy; Nova AI - جامعة تمنراست</p>
+    </footer>
+
+    <script type="module">
+        import { getRequestErrorMessage, submitPublicRequest } from "./firebase-forms.js";
+
+        const form = document.getElementById("workshop-form");
+        const status = document.getElementById("form-status");
+        const submitButton = form.querySelector('button[type="submit"]');
+
+        form.addEventListener("submit", async function (event) {
+            event.preventDefault();
+            if (!form.reportValidity()) return;
+
+            submitButton.disabled = true;
+            status.textContent = "جارٍ حفظ طلب الاهتمام...";
+            status.style.color = "#4a0e4e";
+
+            try {
+                await submitPublicRequest("workshopRequests", form);
+                form.reset();
+                status.textContent = "تم حفظ طلبك. ستتواصل معك الدار عند الإعلان عن ورشات مناسبة.";
+                status.style.color = "green";
+            } catch (error) {
+                console.error("تعذر حفظ طلب الورشة في Firebase:", error);
+                status.textContent = getRequestErrorMessage(error);
+                status.style.color = "red";
+            } finally {
+                submitButton.disabled = false;
+            }
+        });
+    </script>
+
+    <script type="module">
+        import { collection, getDocs, query, where } from "https://www.gstatic.com/firebasejs/13.1.0/firebase-firestore.js";
+        import { db } from "./firebase.js";
+
+        async function loadCourses() {
+            const container = document.getElementById("dynamic-courses-list");
+            try {
+                const q = query(collection(db, "courses"), where("published", "==", true));
+                const snapshot = await getDocs(q);
+
+                if (snapshot.empty) {
+                    container.innerHTML = `
+                        <div style="background:#fff; padding:18px; border-radius:8px; border-right:4px solid #6b1170; line-height:1.8; box-shadow:0 3px 10px rgba(0,0,0,0.04);">
+                            <strong>لا توجد دورات تدريبية معلنة للتسجيل المباشر حالياً.</strong>
+                            <p style="margin:5px 0 0 0; color:#666; font-size:14px;">يتم نشر أفواج ومواعيد الدورات الجديدة هنا بشكل دوري. يمكنك تقديم طلب تسجيل أو استفسار مسبق عبر <a href="register.html" style="color:#4a0e4e; font-weight:bold;">استمارة التسجيل</a> لحجز مكانك.</p>
+                        </div>
+                    `;
+                    return;
+                }
+
+                const list = snapshot.docs.map(d => d.data());
+                list.sort((a, b) => (b.createdAt?.toMillis?.() || 0) - (a.createdAt?.toMillis?.() || 0));
+                container.replaceChildren();
+
+                list.forEach(course => {
+                    const card = document.createElement("article");
+                    card.className = "course-live-card";
+
+                    const header = document.createElement("h3");
+                    header.textContent = course.title || "دورة تدريبية";
+
+                    const badge = document.createElement("span");
+                    badge.className = "badge " + (course.status === "open" ? "badge-open" : (course.status === "soon" ? "badge-soon" : "badge-closed"));
+                    badge.innerHTML = course.status === "open"
+                        ? "<i class='fas fa-check-circle'></i> التسجيل مفتوح"
+                        : (course.status === "soon" ? "<i class='fas fa-clock'></i> قريباً" : "<i class='fas fa-times-circle'></i> اكتمل العدد");
+                    header.appendChild(badge);
+
+                    const badgesDiv = document.createElement("div");
+                    badgesDiv.className = "course-badges";
+                    if (course.category) {
+                        const catBadge = document.createElement("span");
+                        catBadge.className = "badge badge-meta";
+                        catBadge.innerHTML = "<i class='fas fa-tag'></i> " + course.category;
+                        badgesDiv.appendChild(catBadge);
+                    }
+                    if (course.duration) {
+                        const durBadge = document.createElement("span");
+                        durBadge.className = "badge badge-meta";
+                        durBadge.innerHTML = "<i class='far fa-clock'></i> " + course.duration;
+                        badgesDiv.appendChild(durBadge);
+                    }
+                    if (course.instructor) {
+                        const instBadge = document.createElement("span");
+                        instBadge.className = "badge badge-meta";
+                        instBadge.innerHTML = "<i class='fas fa-chalkboard-teacher'></i> " + course.instructor;
+                        badgesDiv.appendChild(instBadge);
+                    }
+
+                    const desc = document.createElement("p");
+                    desc.className = "course-desc";
+                    desc.textContent = course.description || "";
+
+                    const action = document.createElement("div");
+                    if (course.status === "open") {
+                        action.innerHTML = "<a href='register.html' class='action-link'><i class='fas fa-user-plus'></i> سجل في هذه الدورة الآن</a>";
+                    }
+
+                    card.append(header, badgesDiv, desc, action);
+                    container.appendChild(card);
+                });
+            } catch (err) {
+                console.error("خطأ في جلب الدورات:", err);
+                container.innerHTML = "<p style='color:#666;'>تعذر جلب الدورات المتاحة حالياً.</p>";
+            }
+        }
+
+        loadCourses();
+    </script>
+
+</body>
+</html>

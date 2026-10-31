@@ -1,0 +1,101 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function isAdmin() {
+      return request.auth != null
+        && request.auth.token.email == "univtam11info@gmail.com"
+        && request.auth.token.email_verified == true;
+    }
+
+    function validPublicRequest() {
+      return request.resource.data.keys().hasAll([
+          "name", "email", "phone", "topic", "message", "status", "createdAt"
+        ])
+        && request.resource.data.keys().hasOnly([
+          "name", "email", "phone", "topic", "message", "status", "createdAt"
+        ])
+        && request.resource.data.name is string
+        && request.resource.data.name.size() >= 2
+        && request.resource.data.name.size() <= 120
+        && request.resource.data.email is string
+        && request.resource.data.email.size() >= 5
+        && request.resource.data.email.size() <= 254
+        && request.resource.data.phone is string
+        && request.resource.data.phone.size() <= 40
+        && request.resource.data.topic is string
+        && request.resource.data.topic.size() >= 2
+        && request.resource.data.topic.size() <= 120
+        && request.resource.data.message is string
+        && request.resource.data.message.size() <= 2000
+        && request.resource.data.status == "new"
+        && request.resource.data.createdAt == request.time;
+    }
+
+    function validActivityMediaItem(item) {
+      return item.keys().hasAll(["url", "type"])
+        && item.keys().hasOnly(["url", "type"])
+        && (
+          (
+            item.type == "image"
+            && item.url.matches("images/activities/[A-Za-z0-9_-]+\\.(jpg|jpeg|png|gif|webp)")
+          )
+          ||
+          (
+            item.type == "video"
+            && item.url.matches("images/activities/[A-Za-z0-9_-]+\\.(mp4|webm)")
+          )
+        );
+    }
+
+    function validActivityMedia(media) {
+      return media is list
+        && media.size() >= 1
+        && media.size() <= 5
+        && validActivityMediaItem(media[0])
+        && (media.size() < 2 || validActivityMediaItem(media[1]))
+        && (media.size() < 3 || validActivityMediaItem(media[2]))
+        && (media.size() < 4 || validActivityMediaItem(media[3]))
+        && (media.size() < 5 || validActivityMediaItem(media[4]));
+    }
+
+    match /courseRegistrations/{requestId} {
+      allow create: if validPublicRequest();
+      allow read, update, delete: if isAdmin();
+    }
+
+    match /workshopRequests/{requestId} {
+      allow create: if validPublicRequest();
+      allow read, update, delete: if isAdmin();
+    }
+
+    match /competitionRequests/{requestId} {
+      allow create: if validPublicRequest();
+      allow read, update, delete: if isAdmin();
+    }
+
+    match /contactMessages/{messageId} {
+      allow create: if validPublicRequest();
+      allow read, update, delete: if isAdmin();
+    }
+
+    match /activities/{activityId} {
+      allow read: if resource.data.published == true || isAdmin();
+      allow create, update, delete: if isAdmin();
+    }
+
+    match /competitions/{competitionId} {
+      allow read: if resource.data.published == true || isAdmin();
+      allow create, update, delete: if isAdmin();
+    }
+
+    match /courses/{courseId} {
+      allow read: if resource.data.published == true || isAdmin();
+      allow create, update, delete: if isAdmin();
+    }
+
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}
