@@ -198,6 +198,9 @@ body {
     display: flex;
     gap: 20px;
     margin: 40px auto;
+    width: 90%;
+    max-width: 1200px;
+    clear: both;
 }
 
 .card {
@@ -337,6 +340,9 @@ body {
     background-color: #151118;
     color: #fff;
     padding: 50px 0;
+    position: relative;
+    clear: both;
+    width: 100%;
 }
 
 .dark-banner-flex {
@@ -525,13 +531,21 @@ footer {
     }
 
     .cards-section {
-        flex-direction: column;
-        gap: 18px;
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 20px !important;
+        margin: 30px auto !important;
+        height: auto !important;
     }
 
     .card {
-        width: 100%;
-        height: 220px;
+        width: 100% !important;
+        flex: none !important;
+        height: 220px !important;
+    }
+
+    .dark-banner {
+        margin-top: 20px;
     }
 
     .dark-banner-flex {
